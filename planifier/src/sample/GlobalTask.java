@@ -40,8 +40,8 @@ public abstract class GlobalTask {
     private char digits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // digits array is used to check date format
     private long deadlineComparisonValue; // is used for task finish optimisation in TaskManager class
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); // this formatter is used to format date
+    private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); // this format is used to parse date and get time
 
     // checks if symbol is in digits array
 
@@ -58,20 +58,24 @@ public abstract class GlobalTask {
 
     protected boolean checkFormat(String date) {
         if(date.length() != 19) {
-            return false;
+            return false; // length must be of 19 characters
         }
         for(int i=0; i < date.length(); i++) {
-            switch (i) {
+            switch (i) { // it's important to use break, because if not cases are mixed and it doesn't work
                 case 2:
                 case 5:
-                    if(date.charAt(i) != '-') return false;
+                    if(date.charAt(i) != '-') return false; // - between date parameters
+                    break;
                 case 10:
-                    if(date.charAt(i) != ' ') return false;
+                    if(date.charAt(i) != ' ') return false; // space between date and time
+                    break;
                 case 13:
                 case 16:
-                    if(date.charAt(i) != ':') return false;
+                    if(date.charAt(i) != ':') return false; // : between time parameters
+                    break;
                 default:
-                    if(! inDigits(date.charAt(i)) ) return false;
+                    if(!inDigits(date.charAt(i)) ) return false; // other characters must be digits
+                    break;
             }
         }
         return true;
@@ -89,13 +93,13 @@ public abstract class GlobalTask {
         this.description = description;
         if(checkFormat(deadline)) this.deadline = deadline;
         else {
-            throw new WrongFormatException("You use wrong format");
+            throw new WrongFormatException("You use wrong format " + deadline); // exception defined before
         }
         LocalDateTime nowInstant = LocalDateTime.now();
         this.start = nowInstant.format(this.formatter);
         this.done = false;
         try {
-            this.deadlineComparisonValue = this.format.parse(deadline).getTime();
+            this.deadlineComparisonValue = this.format.parse(deadline).getTime(); // is used for comparison in TaskManager
         } catch(ParseException e) {
             e.printStackTrace();
         }
@@ -134,14 +138,17 @@ public abstract class GlobalTask {
     public void setImportance(float importanceValue) {
         this.importance = importanceValue;
     }
+    public String getStart() {
+        return this.start;
+    }
 
     //__________________________________
 
     //calculates time remaining
 
     public long[] timeRemaining() {
-        LocalDateTime nowInstant = LocalDateTime.now();
-        String dateNowString = nowInstant.format(this.formatter);
+        LocalDateTime nowInstant = LocalDateTime.now(); // returns date and time in this instant
+        String dateNowString = nowInstant.format(this.formatter); // string formatted and corresponding to this instant
         Date dateNow = null;
         Date dateEnd = null;
         long Seconds = 0;
@@ -151,7 +158,7 @@ public abstract class GlobalTask {
         try {
             dateNow = this.format.parse(dateNowString);
             dateEnd = this.format.parse(this.deadline);
-            long remainingTime = dateEnd.getTime() - dateNow.getTime();
+            long remainingTime = dateEnd.getTime() - dateNow.getTime(); // calculates time remaining using dateNow and dateEnd
             if (remainingTime <= 0) {
                 long[] timer = {0,0,0,0}; // returns 0 if task must be finished and hasn't been finished yet
                 return timer;
@@ -164,7 +171,7 @@ public abstract class GlobalTask {
             e.printStackTrace();
         }
         long[] timer = {Days,Hours,Minutes,Seconds};
-        return timer;
+        return timer; // returns Days, Hours, Minutes and Seconds remaining
     }
 
     //__________________________________
