@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="386.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PersonalTaskController">
+   <children>
+      <DatePicker fx:id="deadlinePicker" layoutX="304.0" layoutY="64.0" prefHeight="80.0" prefWidth="198.0" />
+      <Slider fx:id="importanceSlider" blockIncrement="0.05" layoutX="333.0" layoutY="296.0" max="1.0" value="0.5" />
+      <Button fx:id="createButton" layoutX="220.0" layoutY="347.0" mnemonicParsing="false" onAction="#createNewPersonalTask" text="Create" />
+      <TextArea fx:id="descriptionArea" layoutX="14.0" layoutY="104.0" prefHeight="200.0" prefWidth="200.0" text="Give your task description&#10;" />
+      <TextField fx:id="usernameField" layoutX="14.0" layoutY="24.0" text="Give your username" />
+      <TextField fx:id="themeField" layoutX="14.0" layoutY="64.0" text="Give a theme " />
+      <Label fx:id="importanceSliderLabel" layoutX="325.0" layoutY="273.0" text="Think about importance" />
+      <Label fx:id="deadlinePickerLabel" layoutX="359.0" layoutY="29.0" text="Pick deadline" />
+      <TextField fx:id="deadlineHour" layoutX="317.0" layoutY="160.0" />
+      <TextField fx:id="deadlineMinutes" layoutX="317.0" layoutY="192.0" />
+      <TextField fx:id="deadlineSeconds" layoutX="317.0" layoutY="225.0" />
+   </children>
+</AnchorPane>
