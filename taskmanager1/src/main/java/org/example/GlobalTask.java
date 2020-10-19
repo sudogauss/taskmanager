@@ -143,6 +143,7 @@ public abstract class GlobalTask {
         return this.start;
     }
     public String getDeadline() { return this.deadline; }
+    public long getDeadlineComparisonValue() { return this.deadlineComparisonValue; }
 
     //__________________________________
 
