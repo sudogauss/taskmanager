@@ -1,13 +1,18 @@
-package org.example;
+package org.example.app;
+
+import org.example.MySQLAccess.MySQLAccessor;
+import org.example.Tasks.GlobalTask;
+import org.example.Tasks.PersonalTask;
+import org.example.Tasks.TeamTask;
 
 import java.util.ArrayList;
-import java.sql.Connection;
 
 public class TaskManager {
 
     private static ArrayList<PersonalTask> personalTaskArrayList = new ArrayList<PersonalTask>();
     private static MySQLAccessor mySQLAccessor = null;
     private ArrayList<TeamTask> teamTaskArrayList;
+
 
 
     public static void addPersonalTask(double importance, String theme, String description, String deadline, String username) {

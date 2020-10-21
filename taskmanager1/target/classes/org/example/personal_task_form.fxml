@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="386.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PersonalTaskController">
+<AnchorPane prefHeight="386.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLControllers.PersonalTaskController">
    <children>
       <DatePicker fx:id="deadlinePicker" layoutX="304.0" layoutY="64.0" prefHeight="80.0" prefWidth="198.0" />
       <Slider fx:id="importanceSlider" blockIncrement="0.05" layoutX="333.0" layoutY="296.0" max="1.0" value="0.5" />

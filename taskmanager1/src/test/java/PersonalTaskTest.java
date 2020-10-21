@@ -1,5 +1,5 @@
-import org.example.GlobalTask;
-import org.example.PersonalTask;
+import org.example.Tasks.GlobalTask;
+import org.example.Tasks.PersonalTask;
 import org.junit.jupiter.api.Test;
 
 public class PersonalTaskTest {

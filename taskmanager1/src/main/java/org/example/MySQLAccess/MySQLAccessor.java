@@ -1,4 +1,4 @@
-package org.example;
+package org.example.MySQLAccess;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,10 +9,18 @@ public class MySQLAccessor {
     private Connection connect = null;
     private PreparedStatement preparedStatement = null;
 
-    public void addDatabasePersonalTask(int id, String username, String start, String deadline, double importance, String theme, String description, boolean done, long deadlineComparisonValue) {
+    private void EstablishConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connect = DriverManager.getConnection("jdbc:mysql://localhost/tasks?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","tsimafei","123456");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addDatabasePersonalTask(int id, String username, String start, String deadline, double importance, String theme, String description, boolean done, long deadlineComparisonValue) {
+        try {
+            EstablishConnection();
             String insertTaskQuery = "insert into personalTasks (id, username, start, deadline, importance, theme, description, done, deadlineComparisonValue)";
             insertTaskQuery += " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connect.prepareStatement(insertTaskQuery);

@@ -1,11 +1,9 @@
-package org.example;
+package org.example.FXMLControllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.example.TaskManager;
+import org.example.app.TaskManager;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PersonalTaskController {

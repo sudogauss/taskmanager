@@ -4,7 +4,7 @@ This class is extended by others task classes
  */
 
 
-package org.example;
+package org.example.Tasks;
 
 import java.lang.String;
 import java.lang.Exception;
