@@ -20,7 +20,7 @@ import java.util.Date;
 public abstract class GlobalTask {
     // this exception throws if date format isn't good
 
-    public class WrongFormatException extends Exception {
+    public static class WrongFormatException extends Exception {
         public WrongFormatException() {
             super();
         }
@@ -31,12 +31,12 @@ public abstract class GlobalTask {
 
     // !____________________________________________________________________________!
 
-    private int id; // use for database as primary key, possible to get
+    private final int id; // use for database as primary key, possible to get
     private double importance; // the key-concept in task management, can be modified
     private String description;
     private String theme; // description
     private String deadline; // task ends
-    private String start; // task begins
+    private final String start; // task begins
     private boolean done; // true if task is done
     private char digits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // digits array is used to check date format
     private long deadlineComparisonValue; // is used for task finish optimisation in TaskManager class

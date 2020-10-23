@@ -20,7 +20,6 @@ public class TaskManager {
     public static void addPersonalTask(double importance, String theme, String description, String deadline, String username) {
         PersonalTask newPersonalTask = null;
         try {
-            // TODO: 23/10/2020 get database access and COUNT elements, in order to give a good id
             mySQLAccessor = new MySQLAccessor();
             newPersonalTask = new PersonalTask(mySQLAccessor.getDatabaseElementsNumber(), importance, theme, description, deadline, username); // we create a new personal task, with incremented id
             mySQLAccessor = new MySQLAccessor();
