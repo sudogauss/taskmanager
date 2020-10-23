@@ -21,19 +21,17 @@ public class TaskManager {
         PersonalTask newPersonalTask = null;
         try {
             // TODO: 23/10/2020 get database access and COUNT elements, in order to give a good id
-            newPersonalTask = new PersonalTask(personalTaskArrayList.size(), importance, theme, description, deadline, username); // we create a new personal task, with incremented id
+            mySQLAccessor = new MySQLAccessor();
+            newPersonalTask = new PersonalTask(mySQLAccessor.getDatabaseElementsNumber(), importance, theme, description, deadline, username); // we create a new personal task, with incremented id
+            mySQLAccessor = new MySQLAccessor();
+            mySQLAccessor.addDatabasePersonalTask(newPersonalTask.getId(), username, newPersonalTask.getStart(), deadline, importance, theme, description, false, newPersonalTask.getDeadlineComparisonValue()); // we add a task to database
             personalTaskArrayList.add(newPersonalTask);
-            //System.out.println(personalTaskArrayList.get(personalTaskArrayList.size() - 1).getDeadline());
         } catch (GlobalTask.WrongFormatException e) {
             e.printStackTrace();
         }
-        try {
-            mySQLAccessor = new MySQLAccessor();
-            mySQLAccessor.addDatabasePersonalTask(200, username, newPersonalTask.getStart(), deadline, importance, theme, description, false, newPersonalTask.getDeadlineComparisonValue()); // we add a task to database
+
             //mySQLAccessor.close(); ??????
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
 

@@ -1,9 +1,6 @@
 package org.example.MySQLAccess;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MySQLAccessor {
     private Connection connect = null;
@@ -18,9 +15,12 @@ public class MySQLAccessor {
         }
     }
 
+    public MySQLAccessor() {
+        EstablishConnection();
+    }
+
     public void addDatabasePersonalTask(int id, String username, String start, String deadline, double importance, String theme, String description, boolean done, long deadlineComparisonValue) {
         try {
-            EstablishConnection();
             String insertTaskQuery = "insert into personalTasks (id, username, start, deadline, importance, theme, description, done, deadlineComparisonValue)";
             insertTaskQuery += " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connect.prepareStatement(insertTaskQuery);
@@ -41,11 +41,24 @@ public class MySQLAccessor {
         }
     }
 
+    public int getDatabaseElementsNumber() {
+        try {
+            Statement elementsNumberQuery = connect.createStatement();
+            ResultSet countElementsNumberResponse = elementsNumberQuery.executeQuery("select count(*) from personalTasks");
+            while(countElementsNumberResponse.next()) {
+                return countElementsNumberResponse.getInt(1);
+            }
+        } catch (SQLException throwable) {
+            throwable.getSQLState();
+        }
+        return -1;
+    }
+
     public void close() {
         try {
             connect.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.getSQLState();
         }
     }
 }
