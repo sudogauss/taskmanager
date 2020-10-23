@@ -21,7 +21,7 @@ public class MainPage {
     public void showPersonalTaskForm(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(Loader.class.getResource("personal_task_form.fxml"));
+            root = Loader.loadFXML("personal_task_form");
         } catch (IOException e) {
             e.printStackTrace();
         }
