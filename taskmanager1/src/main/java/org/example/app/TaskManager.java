@@ -21,7 +21,7 @@ public class TaskManager {
         PersonalTask newPersonalTask = null;
         try {
             mySQLAccessor = new MySQLAccessor();
-            newPersonalTask = new PersonalTask(mySQLAccessor.getDatabaseElementsNumber(), importance, theme, description, deadline, username); // we create a new personal task, with incremented id
+            newPersonalTask = new PersonalTask(mySQLAccessor.getTableElementsNumber("personalTasks"), importance, theme, description, deadline, username); // we create a new personal task, with incremented id
             mySQLAccessor = new MySQLAccessor();
             mySQLAccessor.addDatabasePersonalTask(newPersonalTask.getId(), username, newPersonalTask.getStart(), deadline, importance, theme, description, false, newPersonalTask.getDeadlineComparisonValue()); // we add a task to database
             personalTaskArrayList.add(newPersonalTask);
@@ -29,8 +29,12 @@ public class TaskManager {
             e.printStackTrace();
         }
 
+
             //mySQLAccessor.close(); ??????
 
+    }
+    public static void pushPersonalTaskIntoArray(PersonalTask personalTask) {
+        personalTaskArrayList.add(personalTask);
     }
 
 

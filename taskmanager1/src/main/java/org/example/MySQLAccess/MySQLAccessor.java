@@ -1,10 +1,20 @@
+/* This class is used to access database tasks
+   We have following list of tables:
+   -> personalTasks, for personal tasks
+*/
+
 package org.example.MySQLAccess;
+
+import org.example.Tasks.PersonalTask;
+import org.example.app.TaskManager;
 
 import java.sql.*;
 
 public class MySQLAccessor {
+
+    // common fields and methods section ________________________start
+
     private Connection connect = null;
-    private PreparedStatement preparedStatement = null;
 
     private void EstablishConnection() {
         try {
@@ -19,11 +29,36 @@ public class MySQLAccessor {
         EstablishConnection();
     }
 
+    public void close() {
+        try {
+            connect.close();
+        } catch (SQLException throwable) {
+            throwable.getSQLState();
+        }
+    }
+
+    public int getTableElementsNumber(String tableName) {
+        try {
+            Statement elementsNumberQuery = connect.createStatement();
+            ResultSet countElementsNumberResponse = elementsNumberQuery.executeQuery("select count(*) from " + tableName);
+            while(countElementsNumberResponse.next()) {
+                return countElementsNumberResponse.getInt(1);
+            }
+        } catch (SQLException throwable) {
+            throwable.getSQLState();
+        }
+        return -1;
+    }
+
+    // __________________________________end of common section
+
+    // personal tasks methods section ________________________start
+
     public void addDatabasePersonalTask(int id, String username, String start, String deadline, double importance, String theme, String description, boolean done, long deadlineComparisonValue) {
         try {
             String insertTaskQuery = "insert into personalTasks (id, username, start, deadline, importance, theme, description, done, deadlineComparisonValue)";
             insertTaskQuery += " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            preparedStatement = connect.prepareStatement(insertTaskQuery);
+            PreparedStatement preparedStatement = connect.prepareStatement(insertTaskQuery);
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, start);
@@ -41,24 +76,28 @@ public class MySQLAccessor {
         }
     }
 
-    public int getDatabaseElementsNumber() {
+    public void uploadAllPersonalsTasks() {
         try {
-            Statement elementsNumberQuery = connect.createStatement();
-            ResultSet countElementsNumberResponse = elementsNumberQuery.executeQuery("select count(*) from personalTasks");
-            while(countElementsNumberResponse.next()) {
-                return countElementsNumberResponse.getInt(1);
+            Statement allElementsQuery = connect.createStatement();
+            ResultSet allElements = allElementsQuery.executeQuery("select * from personalTasks");
+            while(allElements.next()) {
+                int id = allElements.getInt(1);
+                String username = allElements.getString(2);
+                String start = allElements.getString(3);
+                String deadline = allElements.getString(4);
+                double importance = allElements.getDouble(5);
+                String theme = allElements.getString(6);
+                String description = allElements.getString(7);
+                PersonalTask personalTask = new PersonalTask(id,importance,theme,description,deadline,username);
+                personalTask.setStart(start);
+                TaskManager.pushPersonalTaskIntoArray(personalTask);
             }
-        } catch (SQLException throwable) {
-            throwable.getSQLState();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
-        return -1;
     }
 
-    public void close() {
-        try {
-            connect.close();
-        } catch (SQLException throwable) {
-            throwable.getSQLState();
-        }
-    }
+    // _________________________________ end of section
+
+
 }

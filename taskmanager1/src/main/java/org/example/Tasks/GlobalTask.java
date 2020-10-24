@@ -36,7 +36,7 @@ public abstract class GlobalTask {
     private String description;
     private String theme; // description
     private String deadline; // task ends
-    private final String start; // task begins
+    private String start; // task begins
     private boolean done; // true if task is done
     private char digits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // digits array is used to check date format
     private long deadlineComparisonValue; // is used for task finish optimisation in TaskManager class
@@ -141,6 +141,9 @@ public abstract class GlobalTask {
     }
     public String getStart() {
         return this.start;
+    }
+    public void setStart(String start) {
+        this.start = start;
     }
     public String getDeadline() { return this.deadline; }
     public long getDeadlineComparisonValue() { return this.deadlineComparisonValue; }
