@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="386.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLControllers.PersonalTaskController">
+<AnchorPane prefHeight="893.0" prefWidth="720.0" styleClass="form-main-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLControllers.PersonalTaskController">
    <children>
-      <DatePicker fx:id="deadlinePicker" layoutX="304.0" layoutY="64.0" prefHeight="80.0" prefWidth="198.0" />
-      <Slider fx:id="importanceSlider" blockIncrement="0.05" layoutX="333.0" layoutY="296.0" max="1.0" value="0.5" />
-      <Button fx:id="createButton" layoutX="220.0" layoutY="347.0" mnemonicParsing="false" onAction="#createNewPersonalTask" text="Create" />
-      <TextArea fx:id="descriptionArea" layoutX="14.0" layoutY="104.0" prefHeight="200.0" prefWidth="200.0" text="Give your task description&#10;" />
-      <TextField fx:id="usernameField" layoutX="14.0" layoutY="24.0" text="Give your username" />
-      <TextField fx:id="themeField" layoutX="14.0" layoutY="64.0" text="Give a theme " />
-      <Label fx:id="importanceSliderLabel" layoutX="325.0" layoutY="273.0" text="Think about importance" />
-      <Label fx:id="deadlinePickerLabel" layoutX="359.0" layoutY="29.0" text="Pick deadline" />
-      <TextField fx:id="deadlineHour" layoutX="317.0" layoutY="160.0" />
-      <TextField fx:id="deadlineMinutes" layoutX="317.0" layoutY="192.0" />
-      <TextField fx:id="deadlineSeconds" layoutX="317.0" layoutY="225.0" />
+      <DatePicker fx:id="deadlinePicker" layoutX="434.0" layoutY="269.0" prefHeight="197.0" prefWidth="198.0" styleClass="form-text-field" />
+      <Slider fx:id="importanceSlider" blockIncrement="0.05" layoutX="478.0" layoutY="542.0" max="1.0" prefHeight="85.0" prefWidth="200.0" value="0.5" />
+      <Button fx:id="createButton" layoutX="300.0" layoutY="631.0" mnemonicParsing="false" onAction="#createNewPersonalTask" prefHeight="73.0" prefWidth="121.0" styleClass="form-button" text="Create" />
+      <TextArea fx:id="descriptionArea" layoutX="33.0" layoutY="366.0" prefHeight="218.0" prefWidth="271.0" styleClass="form-text-field" text="Give your task description&#10;" />
+      <TextField fx:id="usernameField" layoutX="41.0" layoutY="274.0" prefHeight="25.0" prefWidth="256.0" styleClass="form-text-field" text="Give your username" />
+      <TextField fx:id="themeField" layoutX="40.0" layoutY="319.0" prefHeight="25.0" prefWidth="256.0" styleClass="form-text-field" text="Give a theme " />
+      <Label fx:id="importanceSliderLabel" layoutX="466.0" layoutY="530.0" styleClass="form-label" text="Think about importance" />
+      <Label fx:id="deadlinePickerLabel" layoutX="527.0" layoutY="214.0" styleClass="form-label" text="Pick deadline" />
+      <TextField fx:id="deadlineHour" layoutX="660.0" layoutY="269.0" prefHeight="35.0" prefWidth="40.0" styleClass="form-text-field" />
+      <TextField fx:id="deadlineMinutes" layoutX="660.0" layoutY="331.0" prefHeight="35.0" prefWidth="40.0" styleClass="form-text-field" />
+      <TextField fx:id="deadlineSeconds" layoutX="660.0" layoutY="396.0" prefHeight="35.0" prefWidth="40.0" styleClass="form-text-field" />
+      <Label layoutX="120.0" layoutY="212.0" prefHeight="28.0" prefWidth="121.0" styleClass="form-label" text="Information" />
+      <Label layoutX="169.0" layoutY="116.0" styleClass="header-label" text="Create new personal task" />
    </children>
+   <stylesheets>
+      <URL value="@personal_task_form.css" />
+   </stylesheets>
 </AnchorPane>

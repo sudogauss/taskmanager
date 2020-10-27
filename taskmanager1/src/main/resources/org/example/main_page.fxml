@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLControllers.MainPage">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" styleClass="main-page" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FXMLControllers.MainPage">
    <children>
       <BorderPane fx:id="controlPane" layoutY="3.0" prefHeight="893.0" prefWidth="1200.0">
          <left>
-            <VBox prefHeight="853.0" prefWidth="168.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="731.0" prefWidth="240.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="personalTaskSwitch" mnemonicParsing="false" onAction="#showPersonalTaskForm" prefHeight="48.0" prefWidth="171.0" text="PersonalTask" />
                   <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="171.0" text="TeamTask" />
                </children>
             </VBox>
          </left>
-         <top>
-            <TabPane prefHeight="40.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                <Tab text="Main">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="taskList">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-         </top>
+         <right>
+            <VBox prefHeight="853.0" prefWidth="240.0" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <ToolBar prefHeight="132.0" prefWidth="1200.0" styleClass="border-bottom-element" BorderPane.alignment="CENTER">
+              <items>
+                <Button mnemonicParsing="false" text="Button" />
+              </items>
+            </ToolBar>
+         </bottom>
       </BorderPane>
    </children>
+    <stylesheets>
+        <URL value="@main_page.css" />
+    </stylesheets>
 </AnchorPane>

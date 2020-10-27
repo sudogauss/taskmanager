@@ -1,0 +1,11 @@
+.main-page {
+    -fx-background-image: url("./form-background.jpg");
+    -fx-background-size: cover;
+}
+
+.border-bottom-element {
+    -fx-background-color: transparent;
+}
+.border-top-element {
+    -fx-background-color: #4278e5;
+}

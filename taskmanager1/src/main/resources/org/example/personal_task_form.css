@@ -1,0 +1,30 @@
+.header-label {
+    -fx-text-fill: #eae3e3;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+}
+.form-main-pane {
+    -fx-opacity: 0.95;
+    /*-fx-background-image: url("./form-background.jpg");
+    -fx-background-size: cover;*/
+}
+
+.form-label {
+    -fx-text-fill: #f39467;
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+
+}
+
+.form-text-field {
+    -fx-opacity: 0.85;
+}
+
+.form-button {
+    -fx-border-width: 6px;
+    -fx-border-radius: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: #d05a5a;
+    -fx-background-color: #d05a5a;
+}
